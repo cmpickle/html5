@@ -3,11 +3,14 @@ function initiate() {
     let retrieveButton = document.getElementById('retrieve');
     let deleteButton = document.getElementById('delete');
     let reviewButton = document.getElementById('review');
+    let clearButton = document.getElementById('clear');
 
     saveButton.addEventListener('click', saveItem);
     retrieveButton.addEventListener('click', retrieveItem);
     deleteButton.addEventListener('click', deleteItem);
     reviewButton.addEventListener('click', reviewAll);
+    clearButton.addEventListener('click', clearAll);
+    addEventListener('storage', reviewAll);
 }
 
 function saveItem() {
@@ -30,6 +33,13 @@ function deleteItem() {
         let key = document.getElementById('key').value;
         localStorage.removeItem(key);
         data.innerHTML = '<div>Deleted.</div>';
+    }
+}
+
+function clearAll() {
+    if(confirm('Clear?')) {
+        localStorage.clear();
+        data.innerHTML = '<div>Cleared.</div>';
     }
 }
 
